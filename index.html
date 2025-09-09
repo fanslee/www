@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="python,blog,github,pcb,micropython">
+<meta name="author" content="Fanslee">
+<meta name="description" content="Fanslee's Homepage">
+<link rel="icon" href="/icon.png" type="image/svg+xml" />
+<title>Fanslee's Homepage</title>
+</head>
+<style>
+:root {--Fcolor: #000;--Bcolor: #fff;}
+body{width:100%;height:100%;margin:0;background-color:var(--Bcolor)}
+.avatar {
+    animation: light 4s ease-in-out infinite;
+    transition: 0.8s;
+    border-radius: 50%;
+    margin-top:10%;
+
+    width:96px;
+    height:96px;
+    background:url(/icon.png) center center no-repeat;
+    background-color: #fff;
+}
+.avatar:hover {transform: scale(1.2) rotate(360deg);}
+
+@keyframes light {
+    0%{box-shadow: 0 0 24px #fd7d7d;}
+    50%{box-shadow: 0 0 8px #fff;}
+    100%{box-shadow: 0 0 24px #fd7d7d;}
+}
+
+.title{font-size:36px;font-family:Monaco;}
+.title a{text-decoration:none;color: var(--Fcolor);}
+.flex{display: flex;justify-content:center;}
+.flex a{margin:16px;}
+
+.button{
+    padding: 0.4em 0.8em;
+    text-align: center;
+    text-decoration: none;
+    color: var(--Fcolor);
+    border: 2px solid var(--Fcolor);
+    font-size: 20px;
+    display: inline-block;
+    border-radius: 0.3em;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+.button:before {
+    content: "";
+    background-color: rgba(255,255,255,0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top:0;
+    left:-4.5em;
+    transform:skewX(-45deg) translateX(0);
+    transition:none;
+}
+.button:hover {
+    background-color: var(--Fcolor);
+    color: #fff;
+    border-bottom: 4px solid darken(var(--Fcolor), 10%);
+}
+.button:hover:before {
+    transform: skewX(-45deg) translateX(13.5em);
+    transition: all 0.5s ease-in-out;
+}
+
+.footer {margin:20px auto;text-align:center;font-size:small;color:var(--Fcolor);position:absolute;bottom:0;left:0;right:0;}
+
+@media (max-width: 560px) {#buttonList {flex-direction:column} #buttonList a{margin:8px;}}
+</style>
+
+<body>
+<div class="flex"><div class="avatar"></div></div>
+<div class="flex"><p class="title"><a href="https://www.fanslee.com">fanslee</a></p></div>
+<div class="flex" id="buttonList">
+    <a href="https://blog.fanslee.com" target="_blank" class="button">Blog</a>
+    <a href="https://tool.fanslee.com" target="_blank" class="button">Tool</a>
+    <a href="https://peacepandacoin.com" target="_blank" class="button">PPC</a>
+    <a href="https://link.fanslee.com" target="_blank" class="button">Link</a>
+    <a href="https://music.fanslee.com" target="_blank" class="button">Music</a>
+</div>
+<div class="footer">fanslee do it!</span></div>
+</body>
+</html>
