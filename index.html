@@ -1,3 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>章鱼喵播放器</title>
+		<link rel="stylesheet" href="./zymPlayer.css" />
+	</head>
+	<body>
+		<h1>看右下角</h1>	
+		<script src="./amplitude.min.js"></script>
+		<script src="./zymPlayer.js"></script>
+		<script>
+			new zymAplayer({
+				width: '450px',
+				mode: 'random',
+				show: 'all',
+				list: {
+					path: './music/musicList.json',
+				},
+				position: {
+					right: '0px',
+					bottom: '0px'
+				}
+			});
+		</script>
+	</body>
+</html>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +38,7 @@
 <meta name="author" content="Fanslee">
 <meta name="description" content="Fanslee's Homepage">
 <link rel="icon" href="/icon.png" type="image/svg+xml" />
+<link rel="stylesheet" href="./zymPlayer.css" />
 <title>Fanslee's Homepage</title>
 </head>
 <style>
@@ -136,6 +166,22 @@ body{width:100%;height:100%;margin:0;background-color:var(--Bcolor);}
     <a href="https://link.fanslee.com" target="_blank" class="button">Link</a>
     <a href="https://music.fanslee.com" target="_blank" class="button">Music</a>
 </div>
+		<script src="./amplitude.min.js"></script>
+		<script src="./zymPlayer.js"></script>
+		<script>
+			new zymAplayer({
+				width: '450px',
+				mode: 'random',
+				show: 'all',
+				list: {
+					path: './music/musicList.json',
+				},
+				position: {
+					right: '0px',
+					bottom: '0px'
+				}
+			});
+		</script>
 <div class="footer">fanslee do it!</span></div>
 <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -191,7 +237,6 @@ body{width:100%;height:100%;margin:0;background-color:var(--Bcolor);}
     </script>    
 </body>
 </html>
-
 
 
 
