@@ -23,7 +23,7 @@ class zymAplayer {
 		playerElement = obj['element'] || 'body';
 		playerWidth = obj['width'] || '300px';
 		mode = obj['mode'] || 'order'; // all cover none;
-		playerShow = obj['show'] || 'none'; // all cover none
+		playerShow = obj['show'] || 'all'; // all cover none
 		let list = obj['list'];
 		listPath = list['path'];
 		listHeight = list['height'] || 320;
@@ -497,4 +497,5 @@ window.onresize = () => {
 	}
 	tempDom.remove();
 };
+
 
