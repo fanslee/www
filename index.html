@@ -13,7 +13,7 @@
 </head>
 <style>
 :root {--Fcolor: #000;--Bcolor: #fff;}
-body{width:100%;height:100%;margin:0;background-color:var(--Bcolor);background-image:url(./bg3.jpg)}
+body{width:100%;height:100%;margin:0;background-color:var(--Bcolor);}
 .avatar {
     animation: light 4s ease-in-out infinite;
     transition: 0.8s;
@@ -76,9 +76,58 @@ body{width:100%;height:100%;margin:0;background-color:var(--Bcolor);background-i
 .footer {margin:20px auto;text-align:center;font-size:small;color:var(--Fcolor);position:absolute;bottom:0;left:0;right:0;}
 
 @media (max-width: 560px) {#buttonList {flex-direction:column} #buttonList a{margin:8px;}}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+        
+        #background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        
+        #background-container.loaded {
+            opacity: 1;
+        }
+        
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            z-index: 10;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }  
 </style>
 
 <body>
+ <div id="background-container"></div>    
 <div class="flex"><div class="avatar"></div></div>
 <div class="flex"><p class="title"><a href="https://www.fanslee.com">fanslee</a></p></div>
 <div class="flex" id="buttonList">
@@ -88,8 +137,61 @@ body{width:100%;height:100%;margin:0;background-color:var(--Bcolor);background-i
     <a href="https://music.fanslee.com" target="_blank" class="button">Music</a>
 </div>
 <div class="footer">fanslee do it!</span></div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backgroundContainer = document.getElementById('background-container');
+            const loadingElement = document.getElementById('loading');
+            
+            // 获取Bing图片数据
+            async function fetchBingImage() {
+                try {
+                    // 使用Bing API获取图片数据
+                    const response = await fetch('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8&mkt=zh-CN');
+                    const data = await response.json();
+                    
+                    if (data.images && data.images.length > 0) {
+                        // 随机选择一张图片
+                        const randomIndex = Math.floor(Math.random() * data.images.length);
+                        const image = data.images[randomIndex];
+                        
+                        // 构建完整图片URL
+                        const imageUrl = `https://www.bing.com${image.url}`;
+                        
+                        // 预加载图片
+                        const img = new Image();
+                        img.onload = function() {
+                            backgroundContainer.style.backgroundImage = `url(${imageUrl})`;
+                            backgroundContainer.classList.add('loaded');
+                            
+                            // 隐藏加载提示
+                            setTimeout(() => {
+                                loadingElement.classList.add('hidden');
+                            }, 1000);
+                        };
+                        img.onerror = function() {
+                            // 如果加载失败，使用备用图片
+                            backgroundContainer.style.backgroundImage = 'url(https://picsum.photos/1920/1080)';
+                            backgroundContainer.classList.add('loaded');
+                            loadingElement.classList.add('hidden');
+                        };
+                        img.src = imageUrl;
+                    }
+                } catch (error) {
+                    console.error('获取Bing图片失败:', error);
+                    // 使用备用背景图片
+                    backgroundContainer.style.backgroundImage = 'url(https://picsum.photos/1920/1080)';
+                    backgroundContainer.classList.add('loaded');
+                    loadingElement.classList.add('hidden');
+                }
+            }
+            
+            // 初始化获取图片
+            fetchBingImage();
+        });
+    </script>    
 </body>
 </html>
+
 
 
 
