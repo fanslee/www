@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanslee Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://fanslee.com/favicon.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 100%;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            background: linear-gradient(0deg, #20c997 0%, #20c997 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            color: #6a11cb;
+        }
+        .fanslee {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            background-image: url('https://fanslee.com/x/img/fanslee.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+        }
+        .nav-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+        } 
+        .site01 {background-image: url('https://fanslee.com/x/img/site01.png');}
+        .site02 {background-image: url('https://fanslee.com/x/img/site02.png');}
+        .site03 {background-image: url('https://fanslee.com/x/img/site03.png');}
+        .site04 {background-image: url('https://fanslee.com/x/img/site04.png');}  
+        .site05 {background-image: url('https://fanslee.com/x/img/site05.png');}                                                    
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            max-width: 100%;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            width: 70px;
+            height: auto;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px 5px;
+            flex-shrink: 0;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .social-links .link-text {
+            color: white;
+            font-size: 0.75rem;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        .social-links a:hover i {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px;
+        }
+        
+        .about, .skills {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        h2 {
+            color: #6a11cb;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .skill-item {
+            margin-bottom: 20px;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            border-radius: 5px;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .contact {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-item i {
+            color: #6a11cb;
+            font-size: 1.3rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #20c997 0%, #20c997 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+            
+            .social-links {
+                gap: 10px;
+            }
+            
+            .social-links a {
+                width: 60px;
+                padding: 8px 4px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .social-links {
+                gap: 8px;
+                justify-content: center;
+            }
+            
+            .social-links a {
+                width: 55px;
+                padding: 6px 3px;
+            }
+            
+            .social-links .link-text {
+                font-size: 0.7rem;
+            }
+        }       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-img">
+                <i class="fanslee"></i>
+            </div>
+            <h1>Fans Lee</h1>
+            <p class="title">Digital Nomad</p>
+            <p>I'm nobody.</p>
+            <div class="social-links">
+                <a href="https://m.p-p.fun" target="_blank">
+                    <i class="nav-icon site01"></i>
+                    <span class="link-text">Music</span>
+                </a>   
+                <a href="https://blog.fanslee.com" target="_blank">
+                    <i class="nav-icon site03"></i>
+                    <span class="link-text">Blog</span>
+                </a>
+                <!--<a href="/ad" target="_blank">
+                    <i class="nav-icon site02"></i>
+                    <span class="link-text">AD</span>
+                </a>-->   
+                <a href="/btc" target="_blank">
+                    <i class="nav-icon site04"></i>
+                    <span class="link-text">BTC</span>
+                </a>      
+                <a href="https://ai.fanslee.com" target="_blank">
+                    <i class="nav-icon site05"></i>
+                    <span class="link-text">AI</span>
+                </a>            
+            </div>
+        </header>
+                     
+        <div class="contact">
+            <a href="#" class="btn">do@fasnlee.com</a>
+        </div>
+    </div>
+
+    <script>
+        // 添加技能条动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const skillLevels = document.querySelectorAll('.skill-level');
+            
+            // 使用Intersection Observer API检测元素是否进入视口
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // 当技能条进入视口时，触发宽度动画
+                        const skillLevel = entry.target;
+                        const width = skillLevel.style.width;
+                        skillLevel.style.width = '0';
+                        
+                        setTimeout(() => {
+                            skillLevel.style.width = width;
+                        }, 300);
+                        
+                        // 停止观察该元素
+                        observer.unobserve(skillLevel);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            // 观察所有技能条元素
+            skillLevels.forEach(skill => {
+                observer.observe(skill);
+            });
+        });
+    </script>
+</body>
+</html>

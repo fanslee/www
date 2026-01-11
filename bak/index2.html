@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanslee Navigation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            background: linear-gradient(0deg, #20c997 0%, #20c997 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            color: #6a11cb;
+        }
+        
+        .fanslee {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            background-image: url('../x/img/fanslee.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            width: 70px;
+            height: auto;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px 5px;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .social-links .link-text {
+            color: white;
+            font-size: 0.75rem;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        /* 固定顶部图标大小 - 所有设备 */
+        .social-links .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover .social-icon {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        /* 导航区域样式 */
+        .navigation {
+            padding: 40px;
+        }
+        
+        .category {
+            margin-bottom: 40px;
+        }
+        
+        .category-title {
+            color: #20c997;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #20c997;
+            transition: all 0.3s ease;
+            padding: 20px 15px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: white;
+            color: #20c997;
+        }
+        
+        .nav-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            color: #20c997;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-text {
+            font-size: 0.85rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .contact {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #20c997 0%, #20c997 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #20c997 0%, #20c997 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-to-top i {
+            font-size: 1.5rem;
+        }
+        
+        /* 响应式设计 - 桌面版 (10个图标一排) */
+        @media (min-width: 1200px) {
+            .nav-item {
+                width: calc(10% - 18px); /* 10个图标一排 */
+                min-width: 110px;
+            }
+            
+            .nav-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+            
+            .nav-text {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* 平板电脑 (5个图标一排) */
+        @media (max-width: 1199px) and (min-width: 768px) {
+            .nav-item {
+                width: calc(20% - 16px); /* 5个图标一排 */
+                min-width: 130px;
+                padding: 25px 15px;
+            }
+            
+            .nav-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+                margin-bottom: 12px;
+            }
+            
+            .nav-text {
+                font-size: 1rem;
+            }
+        }
+        
+        /* 手机版 (2个图标一排) */
+        @media (max-width: 767px) {
+            .navigation {
+                padding: 20px;
+            }
+            
+            header {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+            
+            .fanslee {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+            }
+            
+            .nav-item {
+                width: calc(50% - 10px); /* 2个图标一排 */
+                min-width: 140px;
+                padding: 30px 15px;
+            }
+            
+            .nav-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+            }
+            
+            .nav-text {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            /* 手机版顶部社交链接 - 5个一排 */
+            .social-links {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+            }
+            
+            .social-links a {
+                width: calc(20% - 8px); /* 5个一排 */
+                min-width: 60px;
+                padding: 8px 3px;
+            }
+            
+            .social-links .social-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .social-links .link-text {
+                font-size: 0.65rem;
+                margin-top: 5px;
+            }
+            
+            /* 手机版回到顶部按钮 */
+            .back-to-top {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .back-to-top i {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* 超小屏幕优化 */
+        @media (max-width: 360px) {
+            .social-links .link-text {
+                font-size: 0.6rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-item {
+                min-width: 130px;
+                padding: 25px 10px;
+            }
+            
+            .nav-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            
+            .nav-text {
+                font-size: 1rem;
+            }
+            
+            /* 超小屏幕顶部社交链接调整 */
+            .social-links a {
+                min-width: 55px;
+            }
+            
+            .social-links .social-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-img">
+                <i class="fanslee"></i>
+            </div>
+            <h1>Fans Lee</h1>
+            <p class="title">Digital Nomad</p>
+            <p>I'm nobody.</p>
+            <div class="social-links">
+                <a href="https://p-p.fan" target="_blank">
+                    <div class="social-icon"><i class="fas fa-link"></i></div>
+                    <span class="link-text">短址</span>
+                </a>
+                <a href="https://m.p-p.fun" target="_blank">
+                    <div class="social-icon"><i class="fas fa-music"></i></div>
+                    <span class="link-text">音乐</span>
+                </a>
+                <a href="#" target="_blank">
+                    <div class="social-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <span class="link-text">网赚</span>
+                </a>                  
+                <a href="https://p-p.fun" target="_blank">
+                    <div class="social-icon"><i class="fas fa-coins"></i></div>
+                    <span class="link-text">币圈</span>
+                </a>      
+                <a href="https://doai.ink" target="_blank">
+                    <div class="social-icon"><i class="fas fa-robot"></i></div>
+                    <span class="link-text">AI</span>
+                </a>          
+            </div>
+        </header>
+        
+        <div class="navigation">
+            <div class="category">
+                <h2 class="category-title">常用工具</h2>
+                <div class="nav-links">
+                    <a href="https://www.google.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-google"></i></div>
+                        <span class="nav-text">Google</span>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-github"></i></div>
+                        <span class="nav-text">GitHub</span>
+                    </a>
+                    <a href="https://stackoverflow.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-stack-overflow"></i></div>
+                        <span class="nav-text">Stack Overflow</span>
+                    </a>
+                    <a href="https://codepen.io" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-codepen"></i></div>
+                        <span class="nav-text">CodePen</span>
+                    </a>
+                    <a href="https://www.figma.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-figma"></i></div>
+                        <span class="nav-text">Figma</span>
+                    </a>
+                    <a href="https://www.notion.so" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-sticky-note"></i></div>
+                        <span class="nav-text">Notion</span>
+                    </a>
+                    <a href="https://trello.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-trello"></i></div>
+                        <span class="nav-text">Trello</span>
+                    </a>
+                    <a href="https://slack.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-slack"></i></div>
+                        <span class="nav-text">Slack</span>
+                    </a>
+                    <a href="https://discord.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-discord"></i></div>
+                        <span class="nav-text">Discord</span>
+                    </a>
+                    <a href="https://zoom.us" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-video"></i></div>
+                        <span class="nav-text">Zoom</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h2 class="category-title">学习资源</h2>
+                <div class="nav-links">
+                    <a href="https://developer.mozilla.org" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-code"></i></div>
+                        <span class="nav-text">MDN Web Docs</span>
+                    </a>
+                    <a href="https://www.w3schools.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-globe"></i></div>
+                        <span class="nav-text">W3Schools</span>
+                    </a>
+                    <a href="https://css-tricks.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-css3-alt"></i></div>
+                        <span class="nav-text">CSS-Tricks</span>
+                    </a>
+                    <a href="https://dev.to" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-dev"></i></div>
+                        <span class="nav-text">DEV Community</span>
+                    </a>
+                    <a href="https://medium.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-medium"></i></div>
+                        <span class="nav-text">Medium</span>
+                    </a>
+                    <a href="https://www.freecodecamp.org" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-free-code-camp"></i></div>
+                        <span class="nav-text">freeCodeCamp</span>
+                    </a>
+                    <a href="https://www.codecademy.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-laptop-code"></i></div>
+                        <span class="nav-text">Codecademy</span>
+                    </a>
+                    <a href="https://www.udemy.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <span class="nav-text">Udemy</span>
+                    </a>
+                    <a href="https://www.coursera.org" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-book"></i></div>
+                        <span class="nav-text">Coursera</span>
+                    </a>
+                    <a href="https://www.khanacademy.org" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <span class="nav-text">Khan Academy</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h2 class="category-title">设计灵感</h2>
+                <div class="nav-links">
+                    <a href="https://dribbble.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-dribbble"></i></div>
+                        <span class="nav-text">Dribbble</span>
+                    </a>
+                    <a href="https://www.behance.net" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-behance"></i></div>
+                        <span class="nav-text">Behance</span>
+                    </a>
+                    <a href="https://www.awwwards.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-trophy"></i></div>
+                        <span class="nav-text">Awwwards</span>
+                    </a>
+                    <a href="https://codepen.io" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-codepen"></i></div>
+                        <span class="nav-text">CodePen</span>
+                    </a>
+                    <a href="https://cssdesignawards.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-award"></i></div>
+                        <span class="nav-text">CSS Design Awards</span>
+                    </a>
+                    <a href="https://www.pinterest.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-pinterest"></i></div>
+                        <span class="nav-text">Pinterest</span>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-instagram"></i></div>
+                        <span class="nav-text">Instagram</span>
+                    </a>
+                    <a href="https://www.deviantart.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-deviantart"></i></div>
+                        <span class="nav-text">DeviantArt</span>
+                    </a>
+                    <a href="https://www.artstation.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-palette"></i></div>
+                        <span class="nav-text">ArtStation</span>
+                    </a>
+                    <a href="https://www.creativebloq.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-paint-brush"></i></div>
+                        <span class="nav-text">Creative Bloq</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="category">
+                <h2 class="category-title">实用工具</h2>
+                <div class="nav-links">
+                    <a href="https://www.canva.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-paint-brush"></i></div>
+                        <span class="nav-text">Canva</span>
+                    </a>
+                    <a href="https://unsplash.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-camera"></i></div>
+                        <span class="nav-text">Unsplash</span>
+                    </a>
+                    <a href="https://fonts.google.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-font"></i></div>
+                        <span class="nav-text">Google Fonts</span>
+                    </a>
+                    <a href="https://icons8.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-icons"></i></div>
+                        <span class="nav-text">Icons8</span>
+                    </a>
+                    <a href="https://coolors.co" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-palette"></i></div>
+                        <span class="nav-text">Coolors</span>
+                    </a>
+                    <a href="https://www.remove.bg" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-image"></i></div>
+                        <span class="nav-text">Remove.bg</span>
+                    </a>
+                    <a href="https://www.tinypng.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-compress"></i></div>
+                        <span class="nav-text">TinyPNG</span>
+                    </a>
+                    <a href="https://www.figma.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-figma"></i></div>
+                        <span class="nav-text">Figma</span>
+                    </a>
+                    <a href="https://www.adobe.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fab fa-adobe"></i></div>
+                        <span class="nav-text">Adobe</span>
+                    </a>
+                    <a href="https://www.sketch.com" target="_blank" class="nav-item">
+                        <div class="nav-icon"><i class="fas fa-vector-square"></i></div>
+                        <span class="nav-text">Sketch</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact">
+            <a href="mailto:do@fasnlee.com" class="btn">do@fasnlee.com</a>
+        </div>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // 添加图标悬停动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const navIcons = document.querySelectorAll('.nav-icon');
+            const socialIcons = document.querySelectorAll('.social-icon');
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            navIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1) rotate(5deg)';
+                    this.style.backgroundColor = '#e0f7f2';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                    this.style.backgroundColor = '#f0f0f0';
+                });
+            });
+            
+            socialIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1)';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+            
+            // 回到顶部按钮功能
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

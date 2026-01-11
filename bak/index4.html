@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOAI-常用AI网址导航</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            background: linear-gradient(0deg, #20c997 0%, #20c997 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            color: #6a11cb;
+        }
+        
+        .fanslee {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            background-color: #e0f7f2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #20c997;
+            font-size: 60px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            width: 70px;
+            height: auto;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px 5px;
+        }
+
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .social-links .link-text {
+            color: white;
+            font-size: 0.75rem;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        
+        .social-links .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover .social-icon {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .navigation {
+            padding: 40px;
+        }
+        
+        /* 模式选择器样式 - 桌面版 */
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+        
+        .mode-btn {
+            background: white;
+            border: 2px solid #20c997;
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #20c997;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        
+        .mode-btn:hover {
+            background: rgba(32, 201, 151, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .mode-btn.active {
+            background: #20c997;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(32, 201, 151, 0.3);
+        }
+        
+        .mode-panels {
+            position: relative;
+            overflow: hidden;
+            height: auto;
+            min-height: 500px;
+        }
+        
+        .mode-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.5s ease;
+            pointer-events: none;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .mode-panel.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: all;
+            position: relative;
+        }
+        
+        .category {
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .category-title {
+            color: #20c997;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .nav-item-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            padding: 15px 10px;
+            min-height: 160px;
+            justify-content: space-between;
+        }
+        
+        .nav-item-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        
+        .nav-main-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #20c997;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+             .nav-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+            color: #20c997;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }   
+
+        .nav-icon img{
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+            color: #20c997;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-text {
+            font-size: 0.75rem;
+            text-align: center;
+            font-weight: 500;
+            min-height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+        }
+        
+        .nav-action-links {
+            display: flex;
+            gap: 6px;
+            margin-top: 0;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .nav-action-link {
+            font-size: 0.6rem;
+            padding: 3px 6px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            color: #20c997;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            flex: 1;
+            text-align: center;
+            max-width: 45px;
+        }
+        
+        .nav-action-link:hover {
+            background-color: #20c997;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .contact {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #20c997 0%, #20c997 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #20c997 0%, #20c997 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-to-top i {
+            font-size: 1.5rem;
+        }
+        
+        /* 响应式设计 - 桌面版 (10个图标一排) - 图标大小调整为70px */
+        @media (min-width: 1200px) {
+            .nav-item-container {
+                width: calc(10% - 18px);
+                min-width: 110px;
+                padding: 20px 15px;
+                min-height: 180px; /* 增加高度以容纳更大的图标 */
+            }
+ 
+            .nav-icon {
+                width: 70px; /* 调整为70px */
+                height: 70px; /* 调整为70px */
+                font-size: 2.2rem; /* 增大字体以适应更大的图标 */
+            }            
+
+            .nav-icon img{
+                width: 70px; /* 调整为70px */
+                height: 70px; /* 调整为70px */
+                font-size: 2.2rem; /* 增大字体以适应更大的图标 */
+            }
+            
+            .nav-text {
+                font-size: 0.9rem;
+                min-height: 35px;
+            }
+            
+            .nav-action-link {
+                font-size: 0.6rem;
+                padding: 3px 6px;
+                max-width: 45px;
+            }
+        }
+        
+        /* 平板电脑 (5个图标一排) */
+        @media (max-width: 1199px) and (min-width: 768px) {
+            .nav-item-container {
+                width: calc(20% - 12px);
+                min-width: 110px;
+                padding: 20px 10px;
+                min-height: 170px;
+            }
+
+            .nav-icon{
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
+                margin-bottom: 10px;
+            }            
+
+            .nav-icon img{
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
+                margin-bottom: 10px;
+            }
+            
+            .nav-text {
+                font-size: 0.85rem;
+                min-height: 40px;
+            }
+            
+            .nav-action-link {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+        }
+        
+        /* 手机版 (2个图标一排) */
+        @media (max-width: 767px) {
+            .navigation {
+                padding: 20px;
+            }
+            
+            header {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+            
+            .fanslee {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+            }
+            
+            .nav-item-container {
+                width: calc(50% - 10px);
+                min-width: 140px;
+                padding: 25px 15px;
+                min-height: 180px;
+            }
+
+            .nav-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+                margin-bottom: 12px;
+            }
+
+            .nav-icon img{
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+                margin-bottom: 12px;
+            }
+            
+            .nav-text {
+                font-size: 1rem;
+                min-height: 45px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-action-link {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
+            
+            .social-links {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+            }
+            
+            .social-links a {
+                width: calc(20% - 8px);
+                min-width: 60px;
+                padding: 8px 3px;
+            }
+            
+            .social-links .social-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .social-links .link-text {
+                font-size: 0.65rem;
+                margin-top: 5px;
+            }
+            
+            .back-to-top {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .back-to-top i {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* 超小屏幕优化 */
+        @media (max-width: 360px) {
+            .social-links .link-text {
+                font-size: 0.6rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-item-container {
+                min-width: 130px;
+                padding: 20px 10px;
+                min-height: 170px;
+            }
+             .nav-icon{
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }           
+            .nav-icon img{
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+            
+            .nav-text {
+                font-size: 0.9rem;
+                min-height: 40px;
+            }
+            
+            .nav-action-link {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+            
+            .social-links a {
+                min-width: 55px;
+            }
+            
+            .social-links .social-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 模式选择器水平滚动样式 - 扩展到平板和其他中等宽度屏幕 */
+        @media (max-width: 1199px) {
+            .mode-selector {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                overflow-y: hidden;
+                justify-content: flex-start;
+                padding: 15px 10px;
+                margin: 0 -10px;
+                -webkit-overflow-scrolling: touch;
+                width: calc(100% + 20px);
+                gap: 10px;
+                
+                /* 隐藏滚动条 - 关键代码 */
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none; /* IE and Edge */
+            }
+            
+            /* 隐藏Webkit浏览器滚动条 */
+            .mode-selector::-webkit-scrollbar {
+                display: none; /* Chrome, Safari, Opera */
+            }
+            
+            .mode-btn {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                flex: 0 0 auto;
+            }
+        }
+        
+        /* 手机版模式选择器调整 */
+        @media (max-width: 767px) {
+            .mode-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* 超小屏幕模式选择器调整 */
+        @media (max-width: 360px) {
+            .mode-btn {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-img">
+                <div class="fanslee"><i class="fas fa-robot"></i></div>
+            </div>
+            <h1>DOAI</h1>
+            <p class="title">常用AI网址导航</p>
+            <p>精选AI工具与资源，助您提升效率</p>
+            <div class="social-links">
+                <a href="#" target="_self">
+                    <div class="social-icon"><i class="fas fa-globe"></i></div>
+                    <span class="link-text">上网</span>
+                </a>
+                <a href="https://m.p-p.fun" target="_blank">
+                    <div class="social-icon"><i class="fas fa-music"></i></div>
+                    <span class="link-text">音乐</span>
+                </a>
+                <a href="#" target="_blank">
+                    <div class="social-icon"><i class="fas fa-chart-line"></i></div>
+                    <span class="link-text">美股</span>
+                </a>                  
+                <a href="#" target="_blank">
+                    <div class="social-icon"><i class="fas fa-coins"></i></div>
+                    <span class="link-text">币圈</span>
+                </a>      
+                <a href="#" target="_blank">
+                    <div class="social-icon"><i class="fas fa-robot"></i></div>
+                    <span class="link-text">AI</span>
+                </a>          
+            </div>
+        </header>
+        
+        <div class="navigation">
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="ai">AI</button>               
+                <button class="mode-btn" data-mode="eb">电商人</button>
+                <button class="mode-btn" data-mode="dev">开发者</button>                
+                <button class="mode-btn" data-mode="invest">投资客</button>
+                <button class="mode-btn" data-mode="internet">上网</button>
+            </div>
+            
+            <div class="mode-panels">
+
+                <!-- AI导航模式 -->
+                <div class="mode-panel active" id="ai">
+                    <div class="category">
+                        <h2 class="category-title">常用</h2>
+                        <div class="nav-links">                          
+
+                            <div class="nav-item-container">
+                                <a href="https://p-p.fan/biling" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/biling.png" alt="笔灵"></div>
+                                    <span class="nav-text">笔灵</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://p-p.fan/biling" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div> 
+                            
+                              <div class="nav-item-container">
+                                <a href="https://www.midjourney.com/home" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/midjourney.png" alt="Midjourney"></div>
+                                    <span class="nav-text">Midjourney</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.midjourney.com/home" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+
+                            <div class="nav-item-container">
+                                <a href="https://p-p.fan/kit" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/kit.png" alt="美图设计室"></div>
+                                    <span class="nav-text">美图设计室</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://p-p.fan/kit" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+
+                            <div class="nav-item-container">
+                                <a href="https://p-p.fan/d" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/d.png" alt="堆友"></div>
+                                    <span class="nav-text">堆友</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://p-p.fan/d" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+
+                            <div class="nav-item-container">
+                                <a href="https://jimeng.jianying.com/ai-tool/home" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/jimeng.png" alt="即梦"></div>
+                                    <span class="nav-text">即梦</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://jimeng.jianying.com/ai-tool/home" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+
+                             <div class="nav-item-container">
+                                <a href="https://www.feishu.cn" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/feishu.png" alt="飞书"></div>
+                                    <span class="nav-text">飞书</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.feishu.cn" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            
+                             <div class="nav-item-container">
+                                <a href="https://p-p.fan/ppt" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/aippt.png" alt="AiPPT"></div>
+                                    <span class="nav-text">AiPPT</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://p-p.fan/ppt" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                           
+
+                            <div class="nav-item-container">
+                                <a href="https://www.coze.cn" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/coze.png" alt="扣子"></div>
+                                    <span class="nav-text">扣子</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.coze.cn" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+
+                            <div class="nav-item-container">
+                                <a href="https://www.doubao.com/chat/" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/doubao.png" alt="豆包"></div>
+                                    <span class="nav-text">豆包</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.doubao.com/chat/" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+
+                            <div class="nav-item-container">
+                                <a href="https://chat.deepseek.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/deepseek.png" alt="DeepSeek"></div>
+                                    <span class="nav-text">DeepSeek</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://chat.deepseek.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="category">
+                        <h2 class="category-title">聊天</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://grok.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/grok.png" alt="Grok"></div>
+                                    <span class="nav-text">Grok</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://grok.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+
+                             <div class="nav-item-container">
+                                <a href="https://gemini.google.com/app" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/gemini.png" alt="Gemini"></div>
+                                    <span class="nav-text">Gemini</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://gemini.google.com/app" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                           
+
+                            <div class="nav-item-container">
+                                <a href="https://chatgpt.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/chatgpt.png" alt="ChatGPT"></div>
+                                    <span class="nav-text">ChatGPT</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://chatgpt.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+
+                               <div class="nav-item-container">
+                                <a href="https://xiaohuanxiong.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/xhx.png" alt="小浣熊"></div>
+                                    <span class="nav-text">小浣熊</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://xiaohuanxiong.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+
+                               <div class="nav-item-container">
+                                <a href="https://xinghuo.xfyun.cn/desk" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/xinghuo.png" alt="讯飞星火"></div>
+                                    <span class="nav-text">讯飞星火</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://xinghuo.xfyun.cn/desk" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+
+                              <div class="nav-item-container">
+                                <a href="https://p-p.fan/glm" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/chatglm.png" alt="智谱清言"></div>
+                                    <span class="nav-text">智谱清言</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://p-p.fan/glm" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+
+                              <div class="nav-item-container">
+                                <a href="https://yiyan.baidu.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/yiyan.png" alt="文心一言"></div>
+                                    <span class="nav-text">文心一言</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://yiyan.baidu.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+
+                             <div class="nav-item-container">
+                                <a href="https://yuanbao.tencent.com/chat" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/yuanbao.png" alt="腾讯元宝"></div>
+                                    <span class="nav-text">腾讯元宝</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://yuanbao.tencent.com/chat" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div> 
+                            
+                             <div class="nav-item-container">
+                                <a href="https://www.tongyi.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/tongyi.png" alt="通义"></div>
+                                    <span class="nav-text">通义</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.tongyi.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                             
+
+                            <div class="nav-item-container">
+                                <a href="https://www.kimi.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/kimi.png" alt="KIMI"></div>
+                                    <span class="nav-text">KIMI</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.kimi.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                           
+                        </div>
+                    </div>
+
+                        <div class="category">
+                        <h2 class="category-title">办公</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://grok.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/grok.png" alt="Grok"></div>
+                                    <span class="nav-text">Grok</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://grok.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                            
+                         <div class="category">
+                        <h2 class="category-title">做图</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://grok.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/grok.png" alt="Grok"></div>
+                                    <span class="nav-text">Grok</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://grok.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+
+                         <div class="category">
+                        <h2 class="category-title">视频</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://grok.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/grok.png" alt="Grok"></div>
+                                    <span class="nav-text">Grok</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://grok.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>                    
+
+                         <div class="category">
+                        <h2 class="category-title">音频</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://grok.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/grok.png" alt="Grok"></div>
+                                    <span class="nav-text">Grok</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://grok.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    
+                          <div class="category">
+                        <h2 class="category-title">提示词</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://grok.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/grok.png" alt="Grok"></div>
+                                    <span class="nav-text">Grok</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://grok.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>                   
+
+                          <div class="category">
+                        <h2 class="category-title">写作</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://grok.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/grok.png" alt="Grok"></div>
+                                    <span class="nav-text">Grok</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://grok.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                    
+                           <div class="category">
+                        <h2 class="category-title">UI设计</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://grok.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/grok.png" alt="Grok"></div>
+                                    <span class="nav-text">Grok</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://grok.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div> 
+                    
+                           <div class="category">
+                        <h2 class="category-title">3D设计</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://grok.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/grok.png" alt="Grok"></div>
+                                    <span class="nav-text">Grok</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://grok.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>                    
+
+                        <div class="category">
+                        <h2 class="category-title">编程</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://grok.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><img src="https://fanslee.com/x/icon/grok.png" alt="Grok"></div>
+                                    <span class="nav-text">Grok</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://grok.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+           
+            </div>
+                
+                <!-- 跨境电商模式 -->
+                <div class="mode-panel" id="eb">
+                    <div class="category">
+                        <h2 class="category-title">跨境电商平台</h2>
+                        <div class="nav-links">
+                            <div class="nav-item-container">
+                                <a href="https://www.amazon.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fab fa-amazon"></i></div>
+                                    <span class="nav-text">Amazon</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.amazon.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.ebay.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fab fa-ebay"></i></div>
+                                    <span class="nav-text">eBay</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.ebay.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.aliexpress.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-shopping-cart"></i></div>
+                                    <span class="nav-text">AliExpress</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.aliexpress.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.wish.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-gift"></i></div>
+                                    <span class="nav-text">Wish</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.wish.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.shopify.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-store"></i></div>
+                                    <span class="nav-text">Shopify</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.shopify.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="category">
+                        <h2 class="category-title">跨境电商平台</h2>
+                        <div class="nav-links">
+                            <div class="nav-item-container">
+                                <a href="https://www.amazon.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fab fa-amazon"></i></div>
+                                    <span class="nav-text">Amazon</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.amazon.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.ebay.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fab fa-ebay"></i></div>
+                                    <span class="nav-text">eBay</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.ebay.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.aliexpress.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-shopping-cart"></i></div>
+                                    <span class="nav-text">AliExpress</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.aliexpress.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.wish.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-gift"></i></div>
+                                    <span class="nav-text">Wish</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.wish.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.shopify.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-store"></i></div>
+                                    <span class="nav-text">Shopify</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.shopify.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ 
+                <!-- 开发者导航模式 -->
+                 <div class="mode-panel" id="dev">
+
+                    <div class="category">
+                        <h2 class="category-title">云服务商</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="#" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-film"></i></div>
+                                    <span class="nav-text">影视平台</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="#" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                   <div class="category">
+                        <h2 class="category-title">域名注册</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="#" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-film"></i></div>
+                                    <span class="nav-text">影视平台</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="#" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+
+                <!-- 投资导航模式 -->
+                <div class="mode-panel" id="invest">
+                    <div class="category">
+                        <h2 class="category-title">美股</h2>
+                        <div class="nav-links">
+                            <div class="nav-item-container">
+                                <a href="https://www.binance.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-coins"></i></div>
+                                    <span class="nav-text">Binance</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.binance.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.coinbase.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fab fa-bitcoin"></i></div>
+                                    <span class="nav-text">Coinbase</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.coinbase.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.kraken.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-anchor"></i></div>
+                                    <span class="nav-text">Kraken</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.kraken.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.huobi.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-fire"></i></div>
+                                    <span class="nav-text">Huobi</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.huobi.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.okx.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-exchange-alt"></i></div>
+                                    <span class="nav-text">OKX</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.okx.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="category">
+                        <h2 class="category-title">加密货币</h2>
+                        <div class="nav-links">
+                            <div class="nav-item-container">
+                                <a href="https://www.binance.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-coins"></i></div>
+                                    <span class="nav-text">Binance</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.binance.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.coinbase.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fab fa-bitcoin"></i></div>
+                                    <span class="nav-text">Coinbase</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.coinbase.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.kraken.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-anchor"></i></div>
+                                    <span class="nav-text">Kraken</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.kraken.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.huobi.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-fire"></i></div>
+                                    <span class="nav-text">Huobi</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.huobi.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                            <div class="nav-item-container">
+                                <a href="https://www.okx.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fas fa-exchange-alt"></i></div>
+                                    <span class="nav-text">OKX</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.okx.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+                <div class="mode-panel" id="internet">
+                    <div class="category">
+                        <h2 class="category-title">科学上网</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://www.google.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fab fa-google"></i></div>
+                                    <span class="nav-text">Google</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.google.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="category">
+                        <h2 class="category-title">电话卡</h2>
+                        <div class="nav-links">
+
+                            <div class="nav-item-container">
+                                <a href="https://www.google.com" target="_blank" class="nav-main-link">
+                                    <div class="nav-icon"><i class="fab fa-google"></i></div>
+                                    <span class="nav-text">Google</span>
+                                </a>
+                                <div class="nav-action-links">
+                                    <a href="#" class="nav-action-link">攻略</a>
+                                    <a href="https://www.google.com" target="_blank" class="nav-action-link">访问</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact">
+            <h3>联系我们</h3>
+            <p>如果您有任何建议或想要添加更多工具，请通过以下方式联系我们</p>
+            <a href="mailto:do@fasnlee.com" class="btn">do@fasnlee.com</a>
+        </div>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navIcons = document.querySelectorAll('.nav-icon');
+            const socialIcons = document.querySelectorAll('.social-icon');
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            navIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1) rotate(5deg)';
+                    this.style.backgroundColor = '#e0f7f2';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                    this.style.backgroundColor = '#f0f0f0';
+                });
+            });
+            
+            socialIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1)';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+            
+            // 模式切换功能
+            const modeButtons = document.querySelectorAll('.mode-btn');
+            const modePanels = document.querySelectorAll('.mode-panel');
+            
+            modeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    modeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const targetMode = this.getAttribute('data-mode');
+                    
+                    modePanels.forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    
+                    document.getElementById(targetMode).classList.add('active');
+                });
+            });
+            
+            // 回到顶部按钮功能
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
